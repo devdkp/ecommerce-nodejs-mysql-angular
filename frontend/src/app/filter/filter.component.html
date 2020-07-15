@@ -1,0 +1,90 @@
+<!-- <h3>Filter Products</h3> -->
+<hr>
+<form [formGroup]="filterForm">
+    <div class="form-group">
+        <h5>Filter By Color</h5>
+        <div class="form-check">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="color" value="Red" (change)="colorChaged($event)">Red
+        </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="color" value="White" (change)="colorChaged($event)">White
+        </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="color" value="Grey" (change)="colorChaged($event)">Grey
+        </label>
+        </div>
+    </div>
+    <div class="form-group">
+
+        <hr>
+        <h5>Filter By Brand</h5>
+
+        <div class="form-check">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="brand" value="Puma" (change)="brandChaged($event)">Puma
+        </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="brand" value="Nike" (change)="brandChaged($event)">Nike
+        </label>
+        </div>
+        <div class="form-check disabled">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="brand" value="Reebok" (change)="brandChaged($event)">Reebok
+        </label>
+        </div>
+
+        <div class="form-check disabled">
+            <label class="form-check-label">
+        <input type="radio" class="form-check-input" formControlName="brand" value="Levis" (change)="brandChaged($event)">Levis
+      </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <hr>
+        <h5>Filter By Price</h5>
+
+        <div class="form-check">
+            <label class="form-check-label">
+      <input type="radio" class="form-check-input" formControlName="price" value="lt_20" (change)="priceChaged($event)">Less than 20
+    </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+      <input type="radio" class="form-check-input" formControlName="price" value="t20-40" (change)="priceChaged($event)">20 - 40
+    </label>
+        </div>
+        <div class="form-check disabled">
+            <label class="form-check-label">
+      <input type="radio" class="form-check-input" formControlName="price" value="f40-100" (change)="priceChaged($event)">40 - 100
+    </label>
+        </div>
+    </div>
+    <div class="form-group">
+
+        <hr>
+        <h5>Filter By Discount</h5>
+
+        <div class="form-check">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="discount" value="d5-10" (change)="discountChaged($event)">5% - 10%
+        </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="discount" value="d10-50" (change)="discountChaged($event)"> 10% - 50%
+        </label>
+        </div>
+        <div class="form-check disabled">
+            <label class="form-check-label">
+          <input type="radio" class="form-check-input" formControlName="discount" value="d50-90" (change)="discountChaged($event)">50% - 90%
+        </label>
+        </div>
+    </div>
+</form>

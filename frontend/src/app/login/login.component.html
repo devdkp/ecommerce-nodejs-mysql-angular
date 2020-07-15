@@ -1,0 +1,37 @@
+<div class="container contents">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 offset-md-3 contents">
+            <div class="card" style="margin-top:20%; padding:10%;">
+                <div *ngIf="apiMessage" style="text-align:center;">
+                    <div [innerHTML]="apiMessage"></div>
+                </div>
+                <form [formGroup]="loginForm">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email*</label>
+                        <input type="text" class="form-control" placeholder="Enter email" formControlName="email">
+                        <span class="text-danger" *ngIf="(loginFormControl.email.touched || submitted) && loginFormControl.email.errors?.required">
+                            Email is required
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password*</label>
+                        <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                        <span class="text-danger" *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.required">
+                            Password is required
+                        </span>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-primary w-100">Login</button> -->
+                    <button type="submit" (click)="loginSubmit()" class="btn btn-primary w-100" [disabled]="isLoading">Login
+                        
+                        <span *ngIf="isLoading">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <!-- Loading... -->
+                        </span>
+                        
+                    </button>
+                    <p>Dont have account? <a routerLink="/register">Register Now</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
