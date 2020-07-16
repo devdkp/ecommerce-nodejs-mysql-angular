@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("../config/db"));
+const constant_1 = require("./../utils/constant");
 const shopRoute = express_1.default.Router();
 shopRoute.get('/products', (req, res) => {
     db_1.default.query('select * from products', (error, results) => {
@@ -25,7 +26,7 @@ shopRoute.get('/products', (req, res) => {
 });
 shopRoute.post('/getCartProducts', (req, res) => {
     const { email, status } = req.body;
-    db_1.default.query('select * from cart where user_email=? and status=?', [email, status], (error, results) => {
+    db_1.default.query('select * from cart where user_email=? and status=?', [email, constant_1.CartStatus.PENDING], (error, results) => {
         if (error) {
             res.json({
                 status: 400,
@@ -57,9 +58,8 @@ shopRoute.post('/addToCart', (req, res) => {
         timeStamp: new Date(),
         pic_1: req.body.pic_1,
         pic_2: req.body.pic_2,
-        status: 'Pending'
+        status: constant_1.CartStatus.PENDING
     };
-    console.log(products);
     db_1.default.query('INSERT INTO cart SET ?', products, function (error, results, fields) {
         if (error) {
             res.json({

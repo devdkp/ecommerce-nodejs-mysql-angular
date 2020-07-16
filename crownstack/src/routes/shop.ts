@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import connection from '../config/db'
+import { CartStatus} from './../utils/constant'
+import { CartProducts } from './../interfaces/products.interface'
 
 
 const shopRoute = express.Router();
@@ -27,7 +29,7 @@ shopRoute.post('/getCartProducts', (req, res) =>{
 
     const { email, status} = req.body;
 
-    connection.query('select * from cart where user_email=? and status=?', [email, status], (error, results) =>{
+    connection.query('select * from cart where user_email=? and status=?', [email, CartStatus.PENDING], (error, results) =>{
         if (error) {
             res.json({
                 status:400,
@@ -45,7 +47,7 @@ shopRoute.post('/getCartProducts', (req, res) =>{
 
 shopRoute.post('/addToCart', (req, res) =>{
 
-    let products = {
+    let products: CartProducts = {
         user_email: req.body.user_email,
         product_name: req.body.product_name,
         original_price:req.body.original_price,
@@ -60,9 +62,8 @@ shopRoute.post('/addToCart', (req, res) =>{
         timeStamp: new Date(),
         pic_1: req.body.pic_1,
         pic_2: req.body.pic_2,
-        status: 'Pending'
+        status: CartStatus.PENDING
     }
-    console.log(products);
     connection.query('INSERT INTO cart SET ?',products, function (error, results, fields) {
         if (error) {
              res.json({
